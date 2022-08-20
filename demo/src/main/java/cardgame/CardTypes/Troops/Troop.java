@@ -24,10 +24,7 @@ public abstract class Troop extends Card {
 
     public String getPrintString()
     {
-        String result = "";
-
-        result += getName();
-        result += "\n";
+        String result = super.getPrintString();
 
         result += ("BP: " + getProtection().getBaseProtection());
         result += "\n";

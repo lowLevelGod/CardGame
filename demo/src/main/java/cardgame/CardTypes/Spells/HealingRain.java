@@ -27,6 +27,7 @@ public class HealingRain extends Spell {
 
     public HealingRain()
     {
+        name = "Healing Rain";
         this.damage = new WaterDamage(-5);
     }
 }

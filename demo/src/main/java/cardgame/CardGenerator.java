@@ -2,6 +2,10 @@ package cardgame;
 
 import java.util.ArrayList;
 
+import cardgame.CardTypes.Spells.HealingRain;
+import cardgame.CardTypes.Spells.Spell;
+import cardgame.CardTypes.Spells.Tsunami;
+import cardgame.CardTypes.Spells.Volcano;
 import cardgame.CardTypes.Troops.Giant;
 import cardgame.CardTypes.Troops.Knight;
 import cardgame.CardTypes.Troops.Thief;
@@ -13,7 +17,7 @@ import cardgame.Effects.Passives.Water;
 
 public class CardGenerator {
     final int TROOPS = 3;
-    final int SPELLS = 2;
+    final int SPELLS = 3;
     final int BP_MIN = 50;
     final int BP_MAX = 500;
     final int PASSIVES = 3;
@@ -25,11 +29,11 @@ public class CardGenerator {
 
         switch(val)
         {
-            case 1:
+            case 0:
                 return new Knight(bp);
-            case 2:
+            case 1:
                 return new Giant(bp);
-            case 3:
+            case 2:
                 return new Thief(bp);
             default:
                 return new Knight(bp);
@@ -43,10 +47,10 @@ public class CardGenerator {
 
         switch(val)
         {
-            case 1:
+            case 0:
                 result.add(new Fire());
                 break;
-            case 2:
+            case 1:
                 result.add(new Water());
                 break;
             default:
@@ -66,5 +70,29 @@ public class CardGenerator {
             troop.addPassiveEffect(p);
 
         return troop;
+    }
+
+    public Spell bareSpell()
+    {
+        int val = (int)(Math.random() * SPELLS);
+
+        switch(val)
+        {
+            case 0:
+                return new Tsunami();
+            case 1:
+                return new Volcano();
+            case 2:
+                return new HealingRain();
+            default:
+                return new HealingRain();
+        }
+    }
+
+    public Spell generateRandomSpell()
+    {
+        Spell spell = bareSpell();
+
+        return spell;
     }
 }

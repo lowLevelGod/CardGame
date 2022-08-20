@@ -23,6 +23,7 @@ public class Tsunami extends Spell {
 
     public Tsunami()
     {
+        name = "Tsunami";
         this.damage = new WaterDamage(5);
     }
 }

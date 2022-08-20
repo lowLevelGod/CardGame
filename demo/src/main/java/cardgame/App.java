@@ -58,12 +58,15 @@ public class App {
         
         // ourKnight.setAttackBehavior(new BasicAttack());
         
-        GameManager.renderMap();
+        // GameManager.renderMap();
 
         // ourGiant.performAbility(new Coord(4, 1));
         // ourGiant.addActiveEffect(new Bleed(1));
 
         new HealingRain().performAbility(new Coord(0, -1));
+
+        for (Card c : GameManager.getRandomInventory())
+            System.out.println(c.getPrintString());
 
         // new Volcano().performAbility(new Coord(-1,2));
         // new Tsunami().performAbility(new Coord(6, 2));
@@ -77,7 +80,7 @@ public class App {
         // System.out.println(t2.getPrintString());
         // System.out.println(t3.getPrintString());
 
-        GameManager.renderMap();
+        // GameManager.renderMap();
         // Spell volcano = new Volcano();
         // volcano.performAbility(new Coord(-1, 1));
         // ourGiant.performAbility(4, 1);
@@ -126,7 +129,9 @@ public class App {
         
         // JFrame frame = new JFrame("Testing");
         // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // JButton button = new JButton("HEllo\nworld");
         // frame.add(new GamePane());
+        // frame.add(button);
         // frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // frame.pack();
         // frame.setLocationRelativeTo(null);

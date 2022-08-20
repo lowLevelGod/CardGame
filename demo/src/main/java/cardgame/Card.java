@@ -10,5 +10,10 @@ public abstract class Card {
     {
         return name;
     }
+
+    public String getPrintString()
+    {
+        return name + "\n";
+    }
 }
 

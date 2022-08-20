@@ -22,6 +22,7 @@ public class Volcano extends Spell {
 
     public Volcano()
     {
+        name = "Volcano";
         this.damage = new FireDamage(5);
     }
 }

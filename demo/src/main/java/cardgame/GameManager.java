@@ -1,5 +1,8 @@
 package cardgame;
 
+import java.util.ArrayList;
+
+import cardgame.CardTypes.Spells.Spell;
 import cardgame.CardTypes.Troops.Troop;
 
 public class GameManager {
@@ -8,6 +11,34 @@ public class GameManager {
     public static final int LANES = 3;
     public static final int ROWS = 7;
     public static final int MID = ROWS / 2;
+    public static final int PLAYER_HAND = 5;
+    public static final int INVENTORY_MAX = 20;
+
+    public static ArrayList<Card> getRandomInventory()
+    {
+        ArrayList<Card> inventory = new ArrayList<Card>();
+        for (int i = 0; i < INVENTORY_MAX; ++i)
+        {
+            Card c = null;
+            int val = (int)(Math.random() * 5);
+            switch(val)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    c = getRandomTroop();
+                    break;
+                default:
+                    c = getRandomSpell();
+                    break;
+            }
+
+            inventory.add(c);
+        }
+
+        return inventory;
+    }
 
     public static void removeTroopAtPos(Coord src)
     {
@@ -60,6 +91,12 @@ public class GameManager {
     {
         Troop generatedTroop = cardGenerator.generateRandomTroop();
         return generatedTroop;
+    }
+
+    public static Spell getRandomSpell()
+    {
+        Spell generatedSpell = cardGenerator.generateRandomSpell();
+        return generatedSpell;
     }
 
     static
