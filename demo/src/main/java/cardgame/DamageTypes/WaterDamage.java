@@ -6,12 +6,26 @@ import cardgame.GameManager;
 public class WaterDamage extends Damage{
     public int getDamageAgainst(Coord dest)
     {
-        switch(GameManager.getCardAtPos(dest).getProtection().getName())
+        // actual damage
+        if (this.baseDamage > 0)
         {
-            case "Fire":
-                return baseDamage * 2;
-            default:
-                return baseDamage;
+            switch(GameManager.getCardAtPos(dest).getProtection().getName())
+            {
+                case "Fire":
+                    return baseDamage * 2;
+                default:
+                    return baseDamage;
+            }
+        }else
+        {
+            // this one is for healing
+            switch(GameManager.getCardAtPos(dest).getProtection().getName())
+            {
+                case "Water":
+                    return baseDamage * 2;
+                default:
+                    return baseDamage;
+            }
         }
     }
 

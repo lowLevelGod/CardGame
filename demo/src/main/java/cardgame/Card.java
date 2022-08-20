@@ -2,7 +2,7 @@ package cardgame;
 
 public abstract class Card {
     protected String name;
-    protected int provisions;
+    protected int inventorySpace;
 
     public abstract void performAbility(Coord src);
 

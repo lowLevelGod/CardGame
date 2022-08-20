@@ -19,14 +19,17 @@ public class Map {
         grid[row][lane] = troop;
     }
 
+    public int getFieldSide(int srcRow, int srcLane)
+    {
+        if (srcRow < MID)
+            return -1;
+        return 1;
+    }
+
     public int getNthOppositeTroop(int srcRow, int srcLane, int n)
     {
         int result = GameException.OUT_OF_BOUNDS;
-        int sign;
-        if (srcRow < MID)
-            sign = 1;
-        else
-            sign = -1;
+        int sign = -getFieldSide(srcRow, srcLane);
 
         for (int row = 0; row < MID; ++row)
         {

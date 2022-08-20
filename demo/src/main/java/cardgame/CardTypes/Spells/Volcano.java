@@ -4,6 +4,7 @@ import cardgame.Coord;
 import cardgame.GameManager;
 import cardgame.CardTypes.Troops.Troop;
 import cardgame.DamageTypes.Damage;
+import cardgame.DamageTypes.FireDamage;
 
 public class Volcano extends Spell {
     public void performAbility(Coord src)
@@ -14,8 +15,13 @@ public class Volcano extends Spell {
             {
                 Troop troop = GameManager.getCardAtPos(new Coord(row, src.lane));
                 if (troop != null)
-                    troop.onHit(new Coord(row, src.lane), new Damage(5));
+                    troop.onHit(new Coord(row, src.lane), this.damage);
             }
         }
+    }
+
+    public Volcano()
+    {
+        this.damage = new FireDamage(5);
     }
 }

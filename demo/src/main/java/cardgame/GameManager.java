@@ -7,6 +7,7 @@ public class GameManager {
     private static Map map;
     public static final int LANES = 3;
     public static final int ROWS = 7;
+    public static final int MID = ROWS / 2;
 
     public static void removeTroopAtPos(Coord src)
     {
@@ -28,6 +29,11 @@ public class GameManager {
         return map.getNthOppositeTroop(src.row, src.lane, n);
     }
 
+    public static int getFieldSide(Coord src)
+    {
+        return map.getFieldSide(src.row, src.lane);
+    }
+
     public static void renderMap()
     {
         for (int row = 0; row < map.getGridHeight(); ++row)
@@ -42,7 +48,7 @@ public class GameManager {
                     if (tmp == null)
                         System.out.print("No troop here!" + " ");
                     else
-                        System.out.print(tmp.getPrintString());
+                        System.out.print(tmp.getName() + " BP: " + tmp.getProtection().getBaseProtection() + " ");
                 }
                 System.out.println("");
             }
