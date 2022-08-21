@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Card Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/grid.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script th:inline="javascript">
+        var playerUp = [[${playerUp}]];
+        var playerDown = [[${playerDown}]];
+        var field = [[${field}]];
+    </script>
+    <script type="text/javascript" th:src="@{js/cardgame.js}">
+    </script>
+
+  </head>
+  <body>
+    <div class="parent">
+      <div class="div1">
+        <div class="parentPlayerUp">
+          <div class="div1PlayerUp">Player 2 Card</div>
+          <div class="div2PlayerUp">Player 2 Card</div>
+          <div class="div3PlayerUp">Player 2 Card</div>
+          <div class="div4PlayerUp">Player 2 Card</div>
+          <div class="div5PlayerUp">Player 2 Card</div>
+        </div>
+      </div>
+      <div class="div2">
+        <div class="parentField">
+            <div class="div1Field"></div>
+            <div class="div2Field"> Troop</div>
+            <div class="div3Field"> Troop</div>
+            <div class="div4Field"> Troop</div>
+            <div class="div5Field"> Troop</div>
+            <div class="div6Field"> Troop</div>
+            <div class="div7Field"> Troop</div>
+            <div class="div8Field"> Troop</div>
+            <div class="div9Field"> Troop</div>
+            <div class="div10Field"> </div>
+            <div class="div11Field"> </div>
+            <div class="div12Field"> </div>
+            <div class="div13Field"> Troop</div>
+            <div class="div14Field">Troop </div>
+            <div class="div15Field"> Troop</div>
+            <div class="div16Field"> Troop</div>
+            <div class="div17Field">Troop </div>
+            <div class="div18Field"> Troop</div>
+            <div class="div19Field"> Troop</div>
+            <div class="div20Field">Troop </div>
+            <div class="div21Field"> Troop</div>
+            </div> 
+      </div>
+      <div class="div3">
+        <div class="parentPlayerDown">
+            <div class="div1PlayerDown">Player 1 Card</div>
+            <div class="div2PlayerDown">Player 1 Card</div>
+            <div class="div3PlayerDown">Player 1 Card</div>
+            <div class="div4PlayerDown">Player 1 Card</div>
+            <div class="div5PlayerDown">Player 1 Card</div>
+          </div>
+      </div>
+      <div class="div4">
+        <div class="parentRight">
+            <div class="div1Right"> Log</div>
+            <div class="div2Right"> Log</div>
+            <div class="div3Right"> Log</div>
+            <div class="div4Right"> Log</div>
+            <div class="div5Right">Log </div>
+            <div class="div6Right"> Log</div>
+            <div class="div7Right">Log </div>
+            </div> 
+      </div>
+      <div class="div5">
+        <div class="parentLeft">
+            <div class="div1Left">
+                <button type="submit" method="post" id="endRound">End Round</button>
+            </div>
+            <div class="div2Left"> Game Buttons</div>
+            <div class="div3Left"> Game Buttons</div>
+            <div class="div4Left"> Game Buttons</div>
+            <div class="div5Left">Game Buttons </div>
+            <div class="div6Left"> Game Buttons</div>
+            <div class="div7Left"> Game Buttons</div>
+            </div> 
+      </div>
+    </div>
+  </body>
+</html>
