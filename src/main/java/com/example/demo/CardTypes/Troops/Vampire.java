@@ -20,6 +20,10 @@ public class Vampire extends Troop{
             Troop attackedTroop = GameManager.getCardAtPos(c);
             if (attackedTroop != null)
             {
+                String eventString = this.name + " damages " + attackedTroop.getName()
+                + " for " + this.damage.getDamageAgainst(c) + "\n";
+
+                GameManager.appendLog(eventString);
                 attackedTroop.onHit(c, this.damage);
                 if (coolDown % bleedTurns == 0)
                 {
@@ -41,6 +45,11 @@ public class Vampire extends Troop{
             Bleed bleed = new Bleed(bleedTurns, this.damage);
             t.removeDuplicateActiveEffects(bleed);
             t.addActiveEffect(bleed);
+
+            String eventString = this.name + " applies " + bleed.getName() 
+            + " to " + t.getName() + " for " + bleed.getTurns() + " turns " + "\n";
+
+            GameManager.appendLog(eventString);
         }
     }
 

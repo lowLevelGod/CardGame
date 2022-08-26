@@ -116,11 +116,10 @@ public class Controllercls {
         //     --cnt;
         // }
 		// model.addAttribute("name", result);
-        GameManager.cleanMap();
-        GameManager.generatedRandomPlayers();
+        GameManager.resetGame();
         model.addAttribute("playerUp", GameManager.getPlayerUp());
         model.addAttribute("playerDown", GameManager.getPlayerDown());
-
+        
 		return "cardgame";
 	}
 
@@ -131,6 +130,8 @@ public class Controllercls {
         model.addAttribute("playerUp", GameManager.getPlayerUp());
         model.addAttribute("playerDown", GameManager.getPlayerDown());
         model.addAttribute("field", GameManager.getFieldArray());
+        model.addAttribute("logText", GameManager.getLogText());
+
 		return "cardgame";
 	}
 

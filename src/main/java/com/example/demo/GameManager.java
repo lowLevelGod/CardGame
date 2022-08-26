@@ -16,6 +16,7 @@ public class GameManager {
     public static final int INVENTORY_MAX = 20;
     private static Player playerUp;
     private static Player playerDown;
+    private static StringBuilder logText;
 
     public static ArrayList<Card> getRandomInventory()
     {
@@ -125,8 +126,17 @@ public class GameManager {
                 playerDownIdx.add(handIdx);
                 player = playerDown;
             }
-            Troop troop = (Troop)player.getHand().get(handIdx);
-            GameManager.setCardAtPos(mapCoords, troop);
+
+            Card card = player.getHand().get(handIdx);
+            if (card instanceof Troop)
+            {
+                Troop troop = (Troop)card;
+                GameManager.setCardAtPos(mapCoords, troop);
+            }else if (card instanceof Spell)
+            {
+                Spell spell = (Spell)card;
+                spell.performAbility(mapCoords);
+            }
         }
 
         Collections.sort(playerUpIdx, Collections.reverseOrder());
@@ -168,7 +178,7 @@ public class GameManager {
         return generatedSpell;
     }
 
-    public static void generatedRandomPlayers()
+    private static void generatedRandomPlayers()
     {
         playerUp = new Player();
         playerUp.setInventory(GameManager.getRandomInventory());
@@ -188,16 +198,40 @@ public class GameManager {
         return result;
     }
 
-    public static void cleanMap()
+    private static void cleanMap()
     {
         for (int row = 0; row < ROWS; ++row)
             for (int lane = 0; lane < LANES; ++lane)
                 setCardAtPos(new Coord(row, lane), null);
     }
 
+    private static void cleanLog()
+    {
+        logText = new StringBuilder();
+    }
+
+    public static void resetGame()
+    {
+        cleanLog();
+        cleanMap();
+        GameManager.generatedRandomPlayers();
+    }
+
+    public static void appendLog(String s)
+    {
+        logText.append(s);
+    }
+
+    public static String getLogText()
+    {
+        logText.append("\n");
+        return logText.toString();
+    }
+
     static
     {
         map = new Map();
         cardGenerator = new CardGenerator();
+        logText = new StringBuilder();
     }
 }

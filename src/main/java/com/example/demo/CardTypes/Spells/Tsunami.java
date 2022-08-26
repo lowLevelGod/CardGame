@@ -1,6 +1,7 @@
 package com.example.demo.CardTypes.Spells;
 
 import com.example.demo.Coord;
+import com.example.demo.GameException;
 import com.example.demo.GameManager;
 import com.example.demo.CardTypes.Troops.Troop;
 import com.example.demo.DamageTypes.WaterDamage;
@@ -14,10 +15,13 @@ public class Tsunami extends Spell {
 
             int row = GameManager.getNthOppositeTroop(spellCoords, 1);
 
-            Coord affectedCoords = new Coord(row, lane);
-            Troop troop = GameManager.getCardAtPos(affectedCoords);
-            if (troop != null)
-                troop.onHit(affectedCoords, this.damage);
+            if (row != GameException.OUT_OF_BOUNDS)
+            {
+                Coord affectedCoords = new Coord(row, lane);
+                Troop troop = GameManager.getCardAtPos(affectedCoords);
+                if (troop != null)
+                    troop.onHit(affectedCoords, this.damage);
+            }
         }
     }
 

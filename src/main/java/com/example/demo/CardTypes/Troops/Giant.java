@@ -16,6 +16,10 @@ public class Giant extends Troop{
             Troop attackedTroop = GameManager.getCardAtPos(c);
             if (attackedTroop != null)
             {
+                String eventString = this.name + " damages " + attackedTroop.getName()
+                 + " for " + this.damage.getDamageAgainst(c) + "\n";
+
+                GameManager.appendLog(eventString);
                 attackedTroop.onHit(c, this.damage);
             }
         }

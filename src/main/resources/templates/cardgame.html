@@ -9,6 +9,7 @@
         var playerUp = [[${playerUp}]];
         var playerDown = [[${playerDown}]];
         var field = [[${field}]];
+        var logText = [[${logText}]];
     </script>
     <script type="text/javascript" th:src="@{js/cardgame.js}">
     </script>
@@ -61,13 +62,12 @@
       </div>
       <div class="div4">
         <div class="parentRight">
-            <div class="div1Right"> Log</div>
-            <div class="div2Right"> Log</div>
-            <div class="div3Right"> Log</div>
-            <div class="div4Right"> Log</div>
-            <div class="div5Right">Log </div>
-            <div class="div6Right"> Log</div>
-            <div class="div7Right">Log </div>
+            <div class="div1Right"> 
+              <textarea id='log' autofocus readonly>
+
+
+              </textarea>
+            </div>
             </div> 
       </div>
       <div class="div5">

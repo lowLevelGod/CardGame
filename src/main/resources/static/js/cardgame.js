@@ -52,6 +52,26 @@ function sendData()
     });
 }
 
+function appendUsedCards(cellCoords, selectCardPos, playerString)
+{
+    usedCards.push({
+        destCoords : cellCoords,
+        handPos : selectCardPos,
+        player : playerString
+    });
+}
+
+function getPlayerSide(cellPos)
+{
+    const mid = Math.floor(fieldHeight * fieldWidth / 2);
+    if (cellPos < mid && selectedCard.className.includes("Up"))
+        return "Up";
+    if (cellPos >= mid + fieldWidth && selectedCard.className.includes("Down"))
+        return "Down";
+
+    return null;
+}
+
 function selectCardFromField(e)
 {
     if (selectedCard)
@@ -67,31 +87,27 @@ function selectCardFromField(e)
                     break;
                 }
 
-        if (!isOccupied)
+        const selectCardPos = selectedCard.className.match(/\d+/)[0] - 1;
+        
+        // check for Spell
+        // might find a better way of checking type later though
+        if (selectedCard.innerHTML.includes("Type:"))
         {
-            const selectCardPos = selectedCard.className.match(/\d+/)[0] - 1;
-            const mid = Math.floor(fieldHeight * fieldWidth / 2);
-            if (cellPos < mid)
+            playerSide = getPlayerSide(cellPos);
+            if (playerSide)
             {
-                if (selectedCard.className.includes("Up"))
-                {
-                    usedCards.push({
-                        destCoords : cellCoords,
-                        handPos : selectCardPos,
-                        player : "Up"
-                    });
-                   replaceCard(selectedCard, e.target);
-                   selectedCard = null;
-                }
-            }else if (cellPos >= mid + fieldWidth)
+                appendUsedCards(cellCoords, selectCardPos, playerSide);
+                blankCard(selectedCard);
+                selectedCard = null;
+            }
+        }else
+        {
+            if (!isOccupied)
             {
-                if (selectedCard.className.includes("Down"))
+                playerSide = getPlayerSide(cellPos);
+                if (playerSide)
                 {
-                    usedCards.push({
-                        destCoords : cellCoords,
-                        handPos : selectCardPos,
-                        player : "Down"
-                    });
+                    appendUsedCards(cellCoords, selectCardPos, playerSide);
                     replaceCard(selectedCard, e.target);
                     selectedCard = null;
                 }
@@ -123,10 +139,19 @@ function loadPlayerDownHand()
 
 }
 
+function blankCard(handCard)
+{
+    handCard.innerHTML = "No Card here";
+}
+
 function replaceCard(handCard, fieldCard)
 {
     fieldCard.innerHTML = handCard.innerHTML;
-    handCard.innerHTML = "No Card here";
+
+    // [fieldCard.style.background, handCard.style.background] = [handCard.style.background, fieldCard.style.background];
+    // [fieldCard.style.color, handCard.style.color] = [handCard.style.color, fieldCard.style.color];
+
+    blankCard(handCard);
 }
 
 function loadField()
@@ -179,6 +204,13 @@ function initRestartGame()
     btn.addEventListener("click", restartGame);
 }
 
+function initLogText()
+{
+    const log = document.getElementById("log");
+    if (logText)
+        log.innerHTML = logText;
+}
+
 function init()
 {
     loadPlayerUpHand();
@@ -186,6 +218,7 @@ function init()
     loadField();
     initEndRound();
     initRestartGame();
+    initLogText();
 }
 
 window.onload = init;
