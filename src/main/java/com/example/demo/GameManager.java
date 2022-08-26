@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import com.example.demo.CardTypes.Spells.Spell;
@@ -99,7 +98,10 @@ public class GameManager {
                 Coord troopCoords = new Coord(row, lane);
                 Troop t = getCardAtPos(troopCoords);
                 if (t != null)
+                {
                     t.performAbility(troopCoords);
+                    t.performActiveEffects(troopCoords);
+                }
             }
     }
 

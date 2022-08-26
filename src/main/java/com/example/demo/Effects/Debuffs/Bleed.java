@@ -8,8 +8,6 @@ import com.example.demo.DamageTypes.Damage;
 public class Bleed extends Debuff {
     public void performEffect(Coord src)
     {
-        final Damage damage = new Damage(1);
-
         Troop debuffedTroop = GameManager.getCardAtPos(src);
         if (debuffedTroop != null)
             debuffedTroop.onHit(src, damage);
@@ -17,9 +15,9 @@ public class Bleed extends Debuff {
         super.performEffect(src);
     }
 
-    public Bleed(int t)
+    public Bleed(int t, Damage d)
     {
-        super(t);
+        super(t, d);
         name = "Bleed";
     }
 }

@@ -1,21 +1,35 @@
 package com.example.demo.CardTypes.Troops;
 
+import java.util.ArrayList;
+
 import com.example.demo.Coord;
-import com.example.demo.AttackTypes.AttackBehavior;
-import com.example.demo.AttackTypes.BasicAttack;
+import com.example.demo.GameManager;
 
 
 public class Thief extends Troop{
-    AttackBehavior attack;
+
     public void performAbility(Coord src)
     {
-        attack.performAttack(src);
+        ArrayList<Coord> troopsInRange = range.computeTroopsInRange(src);
+        for (Coord c : troopsInRange)
+        {
+            Troop attackedTroop = GameManager.getCardAtPos(c);
+            if (attackedTroop != null)
+            {
+                attackedTroop.onHit(c, this.damage);
+            }
+        }
+    }
+
+    public Thief()
+    {
+        super();
+        name = "Thief";
     }
 
     public Thief(int bp)
     {
         super(bp);
-        attack = new BasicAttack();
         name = "Thief";
     }
 }

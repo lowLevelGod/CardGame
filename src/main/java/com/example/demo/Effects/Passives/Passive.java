@@ -7,6 +7,13 @@ public abstract class Passive{
 
     public abstract void performEffect(Troop troop);
 
+    @Override
+    public boolean equals(Object e)
+    {
+        final Passive passive = (Passive)e;
+        return this.name.equals(passive.name);
+    }
+
     public String getName()
     {
         return name;

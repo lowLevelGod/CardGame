@@ -12,12 +12,15 @@ import com.example.demo.OnDeathTypes.BasicOnDeath;
 import com.example.demo.OnDeathTypes.OnDeathBehavior;
 import com.example.demo.OnHitTypes.BasicOnHit;
 import com.example.demo.OnHitTypes.OnHitBehavior;
+import com.example.demo.RangeTypes.BasicRange;
+import com.example.demo.RangeTypes.Range;
 
 public abstract class Troop extends Card {
     protected Protection protection;
     protected Damage damage;
     protected OnHitBehavior onHitBehavior;
     protected OnDeathBehavior onDeathBehavior;
+    protected Range range;
 
     protected ArrayList<Passive> passiveEffects = new ArrayList<Passive>();
     protected ArrayList<Effect> activeEffects = new ArrayList<Effect>();
@@ -48,6 +51,11 @@ public abstract class Troop extends Card {
     private void removeExpiredActiveEffects()
     {
         activeEffects.removeIf(a -> a.getTurns() <= 0);
+    }
+
+    public void removeDuplicateActiveEffects(Effect e)
+    {
+        activeEffects.removeIf(a -> a.equals(e));
     }
 
     public void performActiveEffects(Coord src)
@@ -138,6 +146,7 @@ public abstract class Troop extends Card {
         onHitBehavior = new BasicOnHit();
         onDeathBehavior = new BasicOnDeath();
         this.damage = new Damage();
+        this.range = new BasicRange();
     }
     public Troop(int bp)
     {

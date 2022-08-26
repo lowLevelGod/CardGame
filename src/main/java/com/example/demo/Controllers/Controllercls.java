@@ -4,18 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
-import com.example.demo.Card;
-import com.example.demo.Coord;
 import com.example.demo.GameManager;
-import com.example.demo.Player;
-import com.example.demo.CardTypes.Spells.HealingRain;
-import com.example.demo.CardTypes.Troops.Giant;
-import com.example.demo.CardTypes.Troops.Knight;
-import com.example.demo.CardTypes.Troops.Thief;
-import com.example.demo.CardTypes.Troops.Troop;
-import com.example.demo.Effects.Passives.Fire;
-import com.example.demo.Effects.Passives.Water;
 
 @Controller
 public class Controllercls {

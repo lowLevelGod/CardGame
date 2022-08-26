@@ -162,10 +162,21 @@ function endRound(e)
     init();
 }
 
+function restartGame(e)
+{
+    location.href = "/";
+}
+
 function initEndRound()
 {
     const btn = document.getElementById("endRound");
     btn.addEventListener("click", endRound);
+}
+
+function initRestartGame()
+{
+    const btn = document.getElementById("restartGame");
+    btn.addEventListener("click", restartGame);
 }
 
 function init()
@@ -174,6 +185,7 @@ function init()
     loadPlayerDownHand();
     loadField();
     initEndRound();
+    initRestartGame();
 }
 
 window.onload = init;
